@@ -1,7 +1,7 @@
 {
   "name": "markdown-to-notion",
   "version": "1.0.0",
-  "description": "",
+  "description": "Convert markdown files to notion database. The folder structure is also fully represented as tags in notion.",
   "author": "Rujuu",
   "license": "MIT",
   "main": "dist/index.js",
