@@ -65,3 +65,4 @@ exports.readMD = readMD;
 // const markdownFiles = readMD('sample');
 // console.dir(markdownFiles);
 // console.log('%o', markdownFiles);
+//# sourceMappingURL=readMD.js.map
