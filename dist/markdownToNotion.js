@@ -31,12 +31,12 @@ dotenv.config();
 // testように環境変数から取得
 // const token = process.env.NOTION_TOKEN
 // const databaseId = process.env.NOTION_DATABASE_ID
-async function markdownToNotion(token, databaseId) {
+async function markdownToNotion(token, databaseId, mdFolderPath) {
     if (!token || !databaseId) {
         throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing');
     }
     const notion = new client_1.Client({ auth: token });
-    const mds = (0, readMD_1.readMD)('sample');
+    const mds = (0, readMD_1.readMD)(mdFolderPath);
     try {
         const existingPages = await getExistingPages(notion, databaseId);
         for (const md of mds) {
