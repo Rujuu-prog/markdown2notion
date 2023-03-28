@@ -16,10 +16,10 @@ type PageTitle = Record<string, string>
  * @param token - The Notion API token.
  * @param databaseId - The ID of the Notion database to import Markdown files to.
  * @param mdFolderPath - The path of the folder containing the Markdown files.
- * @returns A promise that resolves when the import is complete.
+ * @returns A boolean indicating whether the import was successful.
  * @throws error If the token or database ID is missing.
  */
-export async function markdownToNotion (token:string|undefined, databaseId:string|undefined, mdFolderPath:string): Promise<void> {
+export async function markdownToNotion (token:string|undefined, databaseId:string|undefined, mdFolderPath:string): Promise<boolean> {
   if (!token || !databaseId) {
     throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing')
   }
@@ -32,8 +32,10 @@ export async function markdownToNotion (token:string|undefined, databaseId:strin
     for (const md of mds) {
       await processMarkdownFile(notion, existingPages, databaseId, md)
     }
+    return true
   } catch (error) {
     handleError(error)
+    return false
   }
 }
 
