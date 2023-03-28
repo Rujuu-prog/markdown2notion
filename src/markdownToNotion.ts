@@ -5,11 +5,12 @@ dotenv.config()
 
 type PageTitle = Record<string, string>
 
-// testように環境変数から取得
+// test用
 // const token = process.env.NOTION_TOKEN
 // const databaseId = process.env.NOTION_DATABASE_ID
+// markdownToNotion(token, databaseId)
 
-export async function markdownToNotion (token:string, databaseId:string): Promise<void> {
+export async function markdownToNotion (token:string|undefined, databaseId:string|undefined): Promise<void> {
   if (!token || !databaseId) {
     throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing')
   }
