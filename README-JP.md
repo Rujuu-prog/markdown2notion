@@ -3,6 +3,8 @@
 
 notionのDBにmarkdownファイルを変換するツールです。フォルダ構造もタグとして表現されます。
 
+> notionのtokenの発行方法やDBとの紐付けかたは[こちら](https://developers.notion.com/docs/getting-started)を参照してください。
+
 ## 🔗 リンク
 English👉[README.md](https://github.com/Rujuu-prog/markdownToNotion/blob/main/README.md)
 

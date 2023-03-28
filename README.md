@@ -3,12 +3,10 @@
 
 Convert markdown files to notion database. The folder structure is also fully represented as tags in notion.
 
-
+> Please refer to [here](https://developers.notion.com/docs/getting-started) for how to issue notion token and how to link with DB.
 
 ## 🔗 Links
 日本語の説明書👉[JP-README.md](https://github.com/Rujuu-prog/markdownToNotion/blob/main/README-JP.md)
-
-
 
 ## 🔽 Installation
 
