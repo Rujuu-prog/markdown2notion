@@ -10,6 +10,8 @@ type PageTitle = Record<string, string>
 // const databaseId = process.env.NOTION_DATABASE_ID
 // markdownToNotion(token, databaseId, 'sample/docs', 'Title', 'Tags')
 
+// TODO: 返り値がてきとうなので整理する
+
 /**
  * Import Markdown files from the specified folder to a Notion database.
  *
@@ -18,13 +20,13 @@ type PageTitle = Record<string, string>
  * @param mdFolderPath - The path of the folder containing the Markdown files.
  * @param fileNameColumn - The name of the column in the Notion database to use for the file name.
  * @param tagsColumn - The name of the column in the Notion database to use for the tags.
- * @returns A boolean indicating whether the import was successful.
+ * @returns Returns error if an error occurs.
  * @throws error If the token or database ID is missing.
  */
 export async function markdownToNotion (token:string|undefined, databaseId:string|undefined,
   mdFolderPath:string,
   fileNameColumn: string = 'Title',
-  tagsColumn: string = 'Tags'): Promise<boolean> {
+  tagsColumn: string = 'Tags'): Promise<void> {
   if (!token || !databaseId) {
     throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing')
   }
@@ -37,10 +39,8 @@ export async function markdownToNotion (token:string|undefined, databaseId:strin
     for (const md of mds) {
       await processMarkdownFile(notion, existingPages, databaseId, md, fileNameColumn, tagsColumn)
     }
-    return true
   } catch (error) {
     handleError(error)
-    return false
   }
 }
 

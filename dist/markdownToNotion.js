@@ -32,6 +32,7 @@ dotenv.config();
 // const token = process.env.NOTION_TOKEN
 // const databaseId = process.env.NOTION_DATABASE_ID
 // markdownToNotion(token, databaseId, 'sample/docs', 'Title', 'Tags')
+// TODO: 返り値がてきとうなので整理する
 /**
  * Import Markdown files from the specified folder to a Notion database.
  *
@@ -40,7 +41,7 @@ dotenv.config();
  * @param mdFolderPath - The path of the folder containing the Markdown files.
  * @param fileNameColumn - The name of the column in the Notion database to use for the file name.
  * @param tagsColumn - The name of the column in the Notion database to use for the tags.
- * @returns A boolean indicating whether the import was successful.
+ * @returns Returns error if an error occurs.
  * @throws error If the token or database ID is missing.
  */
 async function markdownToNotion(token, databaseId, mdFolderPath, fileNameColumn = 'Title', tagsColumn = 'Tags') {
@@ -54,11 +55,9 @@ async function markdownToNotion(token, databaseId, mdFolderPath, fileNameColumn 
         for (const md of mds) {
             await processMarkdownFile(notion, existingPages, databaseId, md, fileNameColumn, tagsColumn);
         }
-        return true;
     }
     catch (error) {
         handleError(error);
-        return false;
     }
 }
 exports.markdownToNotion = markdownToNotion;
