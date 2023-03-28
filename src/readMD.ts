@@ -13,6 +13,12 @@ interface MarkdownFileData {
   blockContent: any
 }
 
+function removeMarkdownLinks(content: string): string {
+    // ページ内リンクの正規表現
+    const linkPattern = /\[([^\]]+)]\(#([^\)]+)\)/g
+    return content.replace(linkPattern, '$1')
+  }
+
 export function readMD (dirPath: string): MarkdownFileData[] {
   const result: MarkdownFileData[] = []
 
@@ -26,7 +32,8 @@ export function readMD (dirPath: string): MarkdownFileData[] {
         walk(entryPath)
       } else if (entry.isFile() && entry.name.endsWith('.md')) {
         const content = matter(fs.readFileSync(entryPath, 'utf-8')).content
-        const blockContent = markdownToBlocks(content)
+        const noLinkContent = removeMarkdownLinks(content)
+        const blockContent = markdownToBlocks(noLinkContent)
         const relativePath = path.relative(dirPath, entryPath)
         const pathParts = relativePath.split(path.sep)
 

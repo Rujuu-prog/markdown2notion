@@ -31,6 +31,11 @@ const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const gray_matter_1 = __importDefault(require("gray-matter"));
 const martian_1 = require("@tryfabric/martian");
+function removeMarkdownLinks(content) {
+    // インラインページ内リンクの正規表現
+    const linkPattern = /\[([^\]]+)]\(#([^\)]+)\)/g;
+    return content.replace(linkPattern, '$1');
+}
 function readMD(dirPath) {
     const result = [];
     function walk(currentPath) {
@@ -42,7 +47,8 @@ function readMD(dirPath) {
             }
             else if (entry.isFile() && entry.name.endsWith('.md')) {
                 const content = (0, gray_matter_1.default)(fs.readFileSync(entryPath, 'utf-8')).content;
-                const blockContent = (0, martian_1.markdownToBlocks)(content);
+                const noLinkContent = removeMarkdownLinks(content);
+                const blockContent = (0, martian_1.markdownToBlocks)(noLinkContent);
                 const relativePath = path.relative(dirPath, entryPath);
                 const pathParts = relativePath.split(path.sep);
                 const fileNameWithExtension = pathParts.pop();
