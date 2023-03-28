@@ -1,0 +1,7 @@
+node_modules/
+yarn-error.log
+
+.history/
+sample/
+.env
+markdown-to-notion-1.0.0.tgz
