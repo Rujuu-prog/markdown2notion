@@ -8,7 +8,7 @@ type PageTitle = Record<string, string>
 // test用
 // const token = process.env.NOTION_TOKEN
 // const databaseId = process.env.NOTION_DATABASE_ID
-// markdownToNotion(token, databaseId)
+// markdownToNotion(token, databaseId, 'sample/docs', 'Title', 'Tags')
 
 /**
  * Import Markdown files from the specified folder to a Notion database.
@@ -16,10 +16,15 @@ type PageTitle = Record<string, string>
  * @param token - The Notion API token.
  * @param databaseId - The ID of the Notion database to import Markdown files to.
  * @param mdFolderPath - The path of the folder containing the Markdown files.
+ * @param fileNameColumn - The name of the column in the Notion database to use for the file name.
+ * @param tagsColumn - The name of the column in the Notion database to use for the tags.
  * @returns A boolean indicating whether the import was successful.
  * @throws error If the token or database ID is missing.
  */
-export async function markdownToNotion (token:string|undefined, databaseId:string|undefined, mdFolderPath:string): Promise<boolean> {
+export async function markdownToNotion (token:string|undefined, databaseId:string|undefined,
+  mdFolderPath:string,
+  fileNameColumn: string = 'Title',
+  tagsColumn: string = 'Tags'): Promise<boolean> {
   if (!token || !databaseId) {
     throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing')
   }
@@ -30,7 +35,7 @@ export async function markdownToNotion (token:string|undefined, databaseId:strin
   try {
     const existingPages = await getExistingPages(notion, databaseId)
     for (const md of mds) {
-      await processMarkdownFile(notion, existingPages, databaseId, md)
+      await processMarkdownFile(notion, existingPages, databaseId, md, fileNameColumn, tagsColumn)
     }
     return true
   } catch (error) {
@@ -74,7 +79,9 @@ async function processMarkdownFile (
   notion: Client,
   existingPageTitles: PageTitle,
   databaseId: string,
-  md: ReturnType<typeof readMD>[number]
+  md: ReturnType<typeof readMD>[number],
+  fileNameColumn: string = 'Title',
+  tagsColumn: string = 'Tags'
 ): Promise<void> {
   try {
     // すでに存在するページの場合は削除処理(アーカイブへ)
@@ -88,7 +95,7 @@ async function processMarkdownFile (
         throw new Error('page_id is not found')
       }
     }
-    await createPage(notion, databaseId, md)
+    await createPage(notion, databaseId, md, fileNameColumn, tagsColumn)
   } catch (error) {
     handleError(error)
   }
@@ -104,7 +111,9 @@ async function archivePage (notion: Client, pageId: string): Promise<void> {
 async function createPage (
   notion: Client,
   databaseId: string,
-  md: ReturnType<typeof readMD>[number]
+  md: ReturnType<typeof readMD>[number],
+  fileNameColumn: string = 'Title',
+  tagsColumn: string = 'Tags'
 ): Promise<void> {
   const resCreate = await notion.pages.create({
     parent: {
@@ -112,7 +121,7 @@ async function createPage (
       database_id: databaseId
     },
     properties: {
-      Title: {
+      [fileNameColumn]: {
         title: [
           {
             text: {
@@ -121,7 +130,7 @@ async function createPage (
           }
         ]
       },
-      Tags: {
+      [tagsColumn]: {
         multi_select: md.folderNames
       }
     },
