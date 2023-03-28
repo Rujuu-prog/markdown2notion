@@ -1,0 +1,44 @@
+{
+  "name": "markdown-to-notion",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Rujuu",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "notion",
+    "markdown",
+    "folder",
+    "notion-api",
+    "markdown-to-notion",
+    "markdown2notion",
+    "md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rujuu-prog/markdownToNotion"
+  },
+  "scripts": {
+    "lint": "eslint --fix 'src/**/*.ts'",
+    "build": "yarn run tsc"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.3",
+    "@tryfabric/martian": "^1.2.4",
+    "gray-matter": "^4.0.3",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  md2notion:
+    container_name: md2notion
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/home/src/
+    tty: true
