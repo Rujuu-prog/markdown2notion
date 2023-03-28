@@ -9,13 +9,13 @@ type PageTitle = Record<string, string>
 // const token = process.env.NOTION_TOKEN
 // const databaseId = process.env.NOTION_DATABASE_ID
 
-export async function markdownToNotion (token:string, databaseId:string): Promise<void> {
+export async function markdownToNotion (token:string, databaseId:string, mdFolderPath:string): Promise<void> {
   if (!token || !databaseId) {
     throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing')
   }
 
   const notion = new Client({ auth: token })
-  const mds = readMD('sample')
+  const mds = readMD(mdFolderPath)
 
   try {
     const existingPages = await getExistingPages(notion, databaseId)
