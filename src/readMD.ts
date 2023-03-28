@@ -19,6 +19,13 @@ function removeMarkdownLinks(content: string): string {
     return content.replace(linkPattern, '$1')
   }
 
+/**
+ * Read and process Markdown files from a specified directory.
+ * The function reads all Markdown files in the directory and its subdirectories, extracts their content, and converts it to Notion block format.
+ *
+ * @param dirPath - The path to the directory containing the Markdown files.
+ * @returns An array of MarkdownFileData objects containing folder names, file names, and Notion block content.
+ */
 export function readMD (dirPath: string): MarkdownFileData[] {
   const result: MarkdownFileData[] = []
 
