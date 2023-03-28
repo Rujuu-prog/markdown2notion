@@ -1,4 +1,4 @@
-# markdown-to-notion
+# markdown2notion
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Convert markdown files to notion database. The folder structure is also fully represented as tags in notion.
@@ -11,11 +11,11 @@ Convert markdown files to notion database. The folder structure is also fully re
 ## 🔽 Installation
 
 ```bash
-npm install markdown-to-notion
+npm install markdown2notion
 ```
 
 ```bash
-yarn add markdown-to-notion
+yarn add markdown2notion
 ```
 
 ## 🔧 Usage
@@ -23,7 +23,7 @@ yarn add markdown-to-notion
 javascript and typescript are supported.
 
 ```typescript
-import {markdownToNotion} from 'markdown-to-notion'
+import {markdownToNotion} from 'markdown2notion'
 
 async function main(){
     try{
@@ -68,7 +68,7 @@ async function main(){
 ### index.ts
 
 ```typescript
-import {markdownToNotion} from 'markdown-to-notion'
+import {markdownToNotion} from 'markdown2notion'
 import * as dotenv from 'dotenv'
 
 async function main() {

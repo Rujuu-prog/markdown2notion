@@ -1,4 +1,4 @@
-# markdown-to-notion
+# markdown2notion
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 notionのDBにmarkdownファイルを変換するツールです。フォルダ構造もタグとして表現されます。
@@ -11,11 +11,11 @@ English👉[README.md](https://github.com/Rujuu-prog/markdownToNotion/blob/main/
 ## 🔽 インストール方法
 
 ```bash
-npm install markdown-to-notion
+npm install markdown2notion
 ```
 
 ```bash
-yarn add markdown-to-notion
+yarn add markdown2notion
 ```
 
 ## 🔧 使い方
@@ -23,7 +23,7 @@ yarn add markdown-to-notion
 javascriptとtypescriptで使えます。
 
 ```typescript
-import {markdownToNotion} from 'markdown-to-notion'
+import {markdownToNotion} from 'markdown2notion'
 
 
 
@@ -68,7 +68,7 @@ async function main(){
 ### index.ts
 
 ```typescript
-import {markdownToNotion} from 'markdown-to-notion'
+import {markdownToNotion} from 'markdown2notion'
 import * as dotenv from 'dotenv'
 
 async function main() {
