@@ -63,7 +63,7 @@ async function main(){
 ![](https://user-images.githubusercontent.com/81368541/228247308-30b798e0-b029-4d21-9a91-9d045f11997f.png)
 
 ### markdown files
-[Sample Markdown Folder](https://github.com/Rujuu-prog/markdownToNotion/tree/main/sample/doc)
+[Sample Markdown Folder](https://github.com/Rujuu-prog/markdown2notion/tree/main/sample/docs)
 
 ### index.ts
 
