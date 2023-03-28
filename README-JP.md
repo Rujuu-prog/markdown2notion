@@ -83,54 +83,8 @@ NOTION_DATABASE_ID=xxxxxxxxxxxxxxx
 タグでフィルタリングすることで、見たいファイルをすぐに探すことができます。
 ![](https://user-images.githubusercontent.com/81368541/228253068-aa17bc25-5401-43c1-8ecc-d98f6a5c1ab9.png)
 
-<style>
-    @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-    .card {
-  background-color: white;
-  width: 90%;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(135deg, #F30100, #D71345);
-  background-size: 200% 200%;
-  animation: gradient 5s ease-in-out infinite;
-}
-
-.card-content {
-  padding: 16px;
-}
-.card-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.card-description {
-  font-size: 14px;
-  color: #fff;
-  line-height: 1.5;
-  margin-bottom: １4px;
-}
-
-    </style>
-<div class="card">
-    <div class="card-content">
-      <h1 class="card-title">👀 注意点</h1>
-      <p class="card-description"> 操作対象のnotionのDB上に、ファイル名と同じページがある場合は上書きされます。</p>
-    </div>
-  </div>
+<h2 style="color:red;">👀 注意点</h2>
+操作対象のnotionのDB上に、ファイル名と同じページがある場合は上書きされます。
 
 ## ライセンス
 

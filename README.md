@@ -3,12 +3,12 @@
 
 Convert markdown files to notion database. The folder structure is also fully represented as tags in notion.
 
----
+
 
 ## 🔗 Links
 日本語の説明書👉[JP-README.md](https://github.com/Rujuu-prog/markdownToNotion/blob/main/README-JP.md)
 
----
+
 
 ## 🔽 Installation
 
@@ -19,7 +19,7 @@ npm install markdown-to-notion
 ```bash
 yarn add markdown-to-notion
 ```
----
+
 ## 🔧 Usage
 
 javascript and typescript are supported.
@@ -36,7 +36,7 @@ const result = markdownToNotion(
 'Column of notion displaying folder name as tag. Default is Tags'
 )
 ```
----
+
 
 ## 🔰 Example
 
@@ -89,58 +89,8 @@ The folder name becomes a tag.
 Filtering using tags makes it easier to access specific files.
 ![](https://user-images.githubusercontent.com/81368541/228253068-aa17bc25-5401-43c1-8ecc-d98f6a5c1ab9.png)
 
----
-
-<style>
-    @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-    .card {
-  background-color: white;
-  width: 90%;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(135deg, #F30100, #D71345);
-  background-size: 200% 200%;
-  animation: gradient 5s ease-in-out infinite;
-}
-
-.card-content {
-  padding: 16px;
-}
-.card-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.card-description {
-  font-size: 14px;
-  color: #fff;
-  line-height: 1.5;
-  margin-bottom: １4px;
-}
-
-    </style>
-<div class="card">
-    <div class="card-content">
-      <h1 class="card-title">👀 Important Point</h1>
-      <p class="card-description"> If there is a page with the same filename on the DB of notion to be operated on, it will be overwritten.</p>
-    </div>
-  </div>
-
----
+<h2 style="color:red;">👀 Important Point</h2>
+If there is a page with the same filename on the DB of notion to be operated on, it will be overwritten.
 
 ## License
 
