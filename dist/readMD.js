@@ -32,7 +32,7 @@ const path = __importStar(require("path"));
 const gray_matter_1 = __importDefault(require("gray-matter"));
 const martian_1 = require("@tryfabric/martian");
 function removeMarkdownLinks(content) {
-    // インラインページ内リンクの正規表現
+    // ページ内リンクの正規表現
     const linkPattern = /\[([^\]]+)]\(#([^\)]+)\)/g;
     return content.replace(linkPattern, '$1');
 }

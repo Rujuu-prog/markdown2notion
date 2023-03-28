@@ -28,11 +28,11 @@ const client_1 = require("@notionhq/client");
 const readMD_1 = require("./readMD");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-// testように環境変数から取得
-const token = process.env.NOTION_TOKEN;
-const databaseId = process.env.NOTION_DATABASE_ID;
-markdownToNotion(token, databaseId);
-async function markdownToNotion(token, databaseId) {
+// test用
+// const token = process.env.NOTION_TOKEN
+// const databaseId = process.env.NOTION_DATABASE_ID
+// markdownToNotion(token, databaseId)
+async function markdownToNotion(token, databaseId, mdFolderPath) {
     if (!token || !databaseId) {
         throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing');
     }
