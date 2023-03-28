@@ -25,14 +25,19 @@ javascript and typescript are supported.
 ```typescript
 import {markdownToNotion} from 'markdown-to-notion'
 
-// Returns true on success, false on failure
-const result = markdownToNotion(
-'notion token',
-'notion database id', 
-'markdown folder path', 
-'Column of notion displaying file names. Default is Title', 
-'Column of notion displaying folder name as tag. Default is Tags'
-)
+async function main(){
+    try{
+        await markdownToNotion(
+        'notion token',
+        'notion database id', 
+        'markdown folder path', 
+        'Column of notion displaying file names. Default is Title', 
+        'Column of notion displaying folder name as tag. Default is Tags'
+        )
+    } catch (error) {
+        console.error(error);
+    }
+}
 ```
 
 
@@ -65,12 +70,19 @@ const result = markdownToNotion(
 ```typescript
 import {markdownToNotion} from 'markdown-to-notion'
 import * as dotenv from 'dotenv'
-dotenv.config()
 
-const token = process.env.NOTION_TOKEN
-const databaseId = process.env.NOTION_DATABASE_ID
+async function main() {
+    dotenv.config()
+    const token = process.env.NOTION_TOKEN
+    const databaseId = process.env.NOTION_DATABASE_ID
+    try {
+      await markdownToNotion(token, databaseId, 'docs', 'Title', 'Tags');
+    } catch (error) {
+      console.error(error);
+    }
+}
 
-const result = markdownToNotion(token, databaseId, '../docs', 'Title', 'Tags')
+main()
 ```
 
 ### .env

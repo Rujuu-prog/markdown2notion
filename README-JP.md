@@ -25,13 +25,20 @@ javascriptとtypescriptで使えます。
 ```typescript
 import {markdownToNotion} from 'markdown-to-notion'
 
-// 成功したらtrue、失敗したらfalseを返します
-const result = markdownToNotion(
-'notion_token', 
-'notion database id', 
-'markdownファイルが入っているフォルダのパス',
-'ファイル名を表示するnotionの列名。 デフォルトはTitle', 
-'タグとしてフォルダ名を表示する列名。 デフォルトはTags')
+
+
+async function main(){
+    try{
+        await markdownToNotion(
+        'notion_token', 
+        'notion database id', 
+        'markdownファイルが入っているフォルダのパス',
+        'ファイル名を表示するnotionの列名。 デフォルトはTitle', 
+        'タグとしてフォルダ名を表示する列名。 デフォルトはTags')
+    } catch (error) {
+        console.error(error);
+    }
+}
 ```
 
 ## 🔰 使用例
@@ -63,12 +70,19 @@ const result = markdownToNotion(
 ```typescript
 import {markdownToNotion} from 'markdown-to-notion'
 import * as dotenv from 'dotenv'
-dotenv.config()
 
-const token = process.env.NOTION_TOKEN
-const databaseId = process.env.NOTION_DATABASE_ID
+async function main() {
+    dotenv.config()
+    const token = process.env.NOTION_TOKEN
+    const databaseId = process.env.NOTION_DATABASE_ID
+    try {
+      await markdownToNotion(token, databaseId, 'docs', 'Title', 'Tags');
+    } catch (error) {
+      console.error(error);
+    }
+}
 
-const result = markdownToNotion(token, databaseId, '../docs', 'Title', 'Tags')
+main()
 ```
 
 ### .env
