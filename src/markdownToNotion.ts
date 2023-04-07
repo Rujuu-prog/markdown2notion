@@ -1,11 +1,11 @@
 import { Client } from '@notionhq/client'
 import { readMD } from './readMD'
-import * as dotenv from 'dotenv'
-dotenv.config()
 
 type PageTitle = Record<string, string>
 
 // test用
+// import * as dotenv from 'dotenv'
+// dotenv.config()
 // const token = process.env.NOTION_TOKEN
 // const databaseId = process.env.NOTION_DATABASE_ID
 // markdownToNotion(token, databaseId, 'sample/docs', 'Title', 'Tags')
