@@ -22,6 +22,8 @@ yarn add markdown2notion
 
 javascriptとtypescriptで使えます。
 
+### markdownToNotion()
+
 ```typescript
 import {markdownToNotion} from 'markdown2notion'
 
@@ -41,7 +43,35 @@ async function main(){
 }
 ```
 
+### searchPage()
+
+> ページのURLはmarkdownToNotion()を使うたびに変更されるため、URLを使って何かしたい場合は、この関数でページのURLを取得してください。
+  
+  ```typescript
+  import {searchPage} from 'markdown2notion'
+
+  async function main(){
+    try{
+        const result = await searchPage(
+        'notion token',
+        'notion database id',
+        'ファイル名を表示するnotionの列名。 デフォルトはTitle', 
+        'タグとしてフォルダ名を表示する列名。 デフォルトはTags'
+        '検索したいファイル名',
+        '検索したいファイルが入っているフォルダ名。配列で指定。'
+        )
+        // 同じファイル名のファイルが存在している場合、複数のページが返ってきます。
+        console.log(result)// notionのpageのobjectが返ってきます。urlはresult['results'][0]['url']とかで取れます。
+    } catch (error) {
+        console.error(error)
+    }
+  }
+  ```
+
+
 ## 🔰 使用例
+
+### 🔽markdownToNotion()
 
 ### フォルダ構成
 
@@ -98,6 +128,61 @@ NOTION_DATABASE_ID=xxxxxxxxxxxxxxx
 
 タグでフィルタリングすることで、見たいファイルをすぐに探すことができます。
 ![](https://user-images.githubusercontent.com/81368541/228253068-aa17bc25-5401-43c1-8ecc-d98f6a5c1ab9.png)
+
+### 🔽searchPage()
+
+### index.ts
+
+```typescript
+import {searchPage} from 'markdown2notion'
+import * as dotenv from 'dotenv'
+
+async function main() {
+    dotenv.config()
+    const token = process.env.NOTION_TOKEN
+    const databaseId = process.env.NOTION_DATABASE_ID
+    const title = 'sampleContent1_1';
+    const tags = ['sample1_1'];
+
+    try {
+      const result = await searchPage(token, databaseId, 'Title', 'Tags', title, tags);
+      console.log(result['results'][0]['url']);
+    } catch (error) {
+      console.error('Error searching for page:', error);
+    }
+}
+
+main()
+```
+
+### result
+
+```bash
+{
+  object: 'list',
+  results: [
+    {
+      object: 'page',
+      id: '33.....',
+      created_time: '2023-03-29T14:15:00.000Z',
+      last_edited_time: '2023-03-29T14:15:00.000Z',
+      created_by: [Object],
+      last_edited_by: [Object],
+      cover: null,
+      icon: null,
+      parent: [Object],
+      archived: false,
+      properties: [Object],
+      url: 'https://www.notion.so/sampleContent1_1-33...'
+    }
+  ],
+  next_cursor: null,
+  has_more: false,
+  type: 'page',
+  page: {}
+}
+```
+
 
 <h2 style="color:red;">👀 注意点</h2>
 操作対象のnotionのDB上に、ファイル名と同じページがある場合は上書きされます。
