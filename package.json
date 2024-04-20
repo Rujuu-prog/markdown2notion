@@ -27,7 +27,7 @@
     "build": "yarn run tsc"
   },
   "dependencies": {
-    "@notionhq/client": "^2.2.3",
+    "@notionhq/client": "^2.2.14",
     "@tryfabric/martian": "^1.2.4",
     "gray-matter": "^4.0.3",
     "typescript": "*"
