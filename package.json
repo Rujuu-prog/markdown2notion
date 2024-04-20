@@ -30,7 +30,7 @@
     "@notionhq/client": "^2.2.3",
     "@tryfabric/martian": "^1.2.4",
     "gray-matter": "^4.0.3",
-    "typescript": "*"
+    "typescript": "5.4.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.43.0",
