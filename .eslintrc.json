@@ -1,10 +1,25 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest/globals": true
     },
-    "extends": "standard-with-typescript",
+    "plugins": [
+        "jest"
+    ],
+    "extends": [
+        "standard-with-typescript",
+        "plugin:jest/recommended",
+        "plugin:jest/style",
+        "love"
+    ],
     "overrides": [
+        {
+            "files": ["__tests__/**/*"],
+            "env": {
+                "jest": true
+            }
+        }
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -12,5 +27,7 @@
         "project": "./tsconfig.json"
     },
     "rules": {
+        "jest/consistent-test-it": ["error", {"fn": "it"}],
+        "jest/require-top-level-describe": ["error"]
     }
 }
