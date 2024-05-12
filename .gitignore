@@ -6,3 +6,5 @@ yarn-error.log
 .env
 markdown2notion-*.tgz
 .idea/
+
+coverage/

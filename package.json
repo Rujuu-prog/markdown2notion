@@ -25,7 +25,8 @@
   "scripts": {
     "lint": "eslint --fix '{src,__tests__}/**/*.ts'",
     "build": "yarn run tsc",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.3",
