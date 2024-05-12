@@ -23,8 +23,8 @@ type PageTitle = Record<string, string>
  * @returns Returns error if an error occurs.
  * @throws error If the token or database ID is missing.
  */
-export async function markdownToNotion (token:string|undefined, databaseId:string|undefined,
-  mdFolderPath:string,
+export async function markdownToNotion (token: string | undefined, databaseId: string | undefined,
+  mdFolderPath: string,
   fileNameColumn: string = 'Title',
   tagsColumn: string = 'Tags'): Promise<void> {
   if (!token || !databaseId) {
@@ -108,7 +108,7 @@ async function archivePage (notion: Client, pageId: string): Promise<void> {
   })
 }
 
-async function createPage (
+export async function createPage (
   notion: Client,
   databaseId: string,
   md: ReturnType<typeof readMD>[number],
