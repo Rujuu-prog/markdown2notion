@@ -18,6 +18,6 @@ jobs:
       - run: yarn build
       - run: yarn test
         continue-on-error: false  # テストが失敗した場合は以降のステップを実行しない
-      - run: yarn npm publish
+      - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
