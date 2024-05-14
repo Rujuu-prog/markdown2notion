@@ -1,2 +1,2 @@
-export { markdownToNotion } from "./markdownToNotion";
-export { searchPage } from "./searchPage";
+export { markdownToNotion } from './markdownToNotion'
+export { searchPage } from './searchPage'
