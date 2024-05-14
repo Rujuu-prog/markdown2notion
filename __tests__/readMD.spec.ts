@@ -28,8 +28,6 @@ describe('readMD', () => {
         blockContent: expect.any(Array)
       }
     ]
-
-    console.dir(result, { depth: null, maxArrayLength: null })
     expect(result).toEqual(expected)
   })
 
