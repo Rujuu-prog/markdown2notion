@@ -15,7 +15,7 @@ interface MarkdownFileData {
 
 function removeMarkdownLinks (content: string): string {
   // ページ内リンクの正規表現
-  const linkPattern = /\[([^\]]+)]\(#([^\)]+)\)/g
+  const linkPattern = /\[([^\]]+)]\(#([^)]+)\)/g
   return content.replace(linkPattern, '$1')
 }
 
@@ -44,7 +44,11 @@ export function readMD (dirPath: string): MarkdownFileData[] {
         const relativePath = path.relative(dirPath, entryPath)
         const pathParts = relativePath.split(path.sep)
 
-        const fileNameWithExtension = pathParts.pop()!
+        const fileNameWithExtension = pathParts.pop()
+        if (fileNameWithExtension === undefined) {
+          // pathPartsからファイル名が取得できない場合はエラーを投げる
+          throw new Error('No file name could be extracted from the path parts.')
+        }
         const fileNameWithoutExtension = path.basename(fileNameWithExtension, '.md')
         const folderNames = pathParts.map(folderName => ({ name: folderName }))
 
