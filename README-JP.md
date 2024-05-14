@@ -1,5 +1,5 @@
 # markdown2notion
-[![npm version](https://badge.fury.io/js/markdown2notion.svg)](https://badge.fury.io/js/markdown2notion) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/markdown2notion.svg)](https://badge.fury.io/js/markdown2notion) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/github/Rujuu-prog/markdown2notion/graph/badge.svg?token=YFLLMR17EB)](https://codecov.io/github/Rujuu-prog/markdown2notion)
 
 notionのDBにmarkdownファイルを変換するツールです。フォルダ構造もタグとして表現されます。
 

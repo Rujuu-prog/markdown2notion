@@ -23,11 +23,11 @@ type PageTitle = Record<string, string>
  * @returns Returns error if an error occurs.
  * @throws error If the token or database ID is missing.
  */
-export async function markdownToNotion (token:string|undefined, databaseId:string|undefined,
-  mdFolderPath:string,
+export async function markdownToNotion (token: string | undefined, databaseId: string | undefined,
+  mdFolderPath: string,
   fileNameColumn: string = 'Title',
   tagsColumn: string = 'Tags'): Promise<void> {
-  if (!token || !databaseId) {
+  if (token === undefined || databaseId === undefined) {
     throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing')
   }
 
@@ -89,7 +89,7 @@ async function processMarkdownFile (
       const pageId = Object.keys(existingPageTitles).find(
         (key) => existingPageTitles[key] === md.fileName
       )
-      if (pageId) {
+      if (pageId !== undefined) {
         await archivePage(notion, pageId)
       } else {
         throw new Error('page_id is not found')
@@ -102,20 +102,20 @@ async function processMarkdownFile (
 }
 
 async function archivePage (notion: Client, pageId: string): Promise<void> {
-  const resDelete = await notion.pages.update({
+  await notion.pages.update({
     page_id: pageId,
     archived: true
   })
 }
 
-async function createPage (
+export async function createPage (
   notion: Client,
   databaseId: string,
   md: ReturnType<typeof readMD>[number],
   fileNameColumn: string = 'Title',
   tagsColumn: string = 'Tags'
 ): Promise<void> {
-  const resCreate = await notion.pages.create({
+  await notion.pages.create({
     parent: {
       type: 'database_id',
       database_id: databaseId

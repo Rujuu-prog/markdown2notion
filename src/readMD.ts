@@ -13,11 +13,11 @@ interface MarkdownFileData {
   blockContent: any
 }
 
-function removeMarkdownLinks(content: string): string {
-    // ページ内リンクの正規表現
-    const linkPattern = /\[([^\]]+)]\(#([^\)]+)\)/g
-    return content.replace(linkPattern, '$1')
-  }
+function removeMarkdownLinks (content: string): string {
+  // ページ内リンクの正規表現
+  const linkPattern = /\[([^\]]+)]\(#([^)]+)\)/g
+  return content.replace(linkPattern, '$1')
+}
 
 /**
  * Read and process Markdown files from a specified directory.
@@ -44,7 +44,10 @@ export function readMD (dirPath: string): MarkdownFileData[] {
         const relativePath = path.relative(dirPath, entryPath)
         const pathParts = relativePath.split(path.sep)
 
-        const fileNameWithExtension = pathParts.pop() as string
+        // ファイル名と拡張子の両方が存在しないファイルはありえないため許容
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const fileNameWithExtension = pathParts.pop()!
+        console.log('file:' + fileNameWithExtension)
         const fileNameWithoutExtension = path.basename(fileNameWithExtension, '.md')
         const folderNames = pathParts.map(folderName => ({ name: folderName }))
 
