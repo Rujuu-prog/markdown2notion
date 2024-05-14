@@ -188,4 +188,3 @@ If there is a page with the same filename on the DB of notion to be operated on,
 ## License
 
 MIT
-
