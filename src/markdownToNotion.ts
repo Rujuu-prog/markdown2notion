@@ -123,7 +123,7 @@ async function processMarkdownFile (
       if (pageId !== undefined) {
         await archivePage(notion, pageId)
       } else {
-        throw new Error('page_id is not found')
+        handleError(new Error('page_id is not found'))
       }
     }
     await createPage(notion, databaseId, md, fileNameColumn, tagsColumn)
