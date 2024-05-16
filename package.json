@@ -31,6 +31,7 @@
   "dependencies": {
     "@notionhq/client": "^2.2.3",
     "@tryfabric/martian": "^1.2.4",
+    "chalk": "4",
     "gray-matter": "^4.0.3",
     "typescript": "*"
   },
