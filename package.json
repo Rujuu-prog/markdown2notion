@@ -33,7 +33,7 @@
     "@tryfabric/martian": "^1.2.4",
     "gray-matter": "^4.0.3",
     "typescript": "5.4.3",
-    "chalk": "4",
+    "chalk": "4"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
