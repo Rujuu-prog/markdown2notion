@@ -32,7 +32,7 @@
     "@notionhq/client": "^2.2.3",
     "@tryfabric/martian": "^1.2.4",
     "gray-matter": "^4.0.3",
-    "typescript": "5.4.3"
+    "typescript": "5.4.3",
     "chalk": "4",
   },
   "devDependencies": {
