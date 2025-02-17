@@ -1,5 +1,5 @@
 # markdown2notion
-[![npm version](https://badge.fury.io/js/markdown2notion.svg)](https://badge.fury.io/js/markdown2notion) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/markdown2notion.svg)](https://badge.fury.io/js/markdown2notion) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/github/Rujuu-prog/markdown2notion/graph/badge.svg?token=YFLLMR17EB)](https://codecov.io/github/Rujuu-prog/markdown2notion)
 
 Convert markdown files to notion database. The folder structure is also fully represented as tags in notion.
 
@@ -188,4 +188,3 @@ If there is a page with the same filename on the DB of notion to be operated on,
 ## License
 
 MIT
-

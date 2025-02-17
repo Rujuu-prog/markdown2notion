@@ -1,5 +1,6 @@
-import { Client } from '@notionhq/client'
+import { Client, isFullPage } from '@notionhq/client'
 import { readMD } from './readMD'
+import chalk from 'chalk'
 
 type PageTitle = Record<string, string>
 
@@ -23,11 +24,11 @@ type PageTitle = Record<string, string>
  * @returns Returns error if an error occurs.
  * @throws error If the token or database ID is missing.
  */
-export async function markdownToNotion (token:string|undefined, databaseId:string|undefined,
-  mdFolderPath:string,
+export async function markdownToNotion (token: string | undefined, databaseId: string | undefined,
+  mdFolderPath: string,
   fileNameColumn: string = 'Title',
   tagsColumn: string = 'Tags'): Promise<void> {
-  if (!token || !databaseId) {
+  if (token === undefined || databaseId === undefined) {
     throw new Error('NOTION_TOKEN or NOTION_DATABASE_ID is missing')
   }
 
@@ -44,12 +45,27 @@ export async function markdownToNotion (token:string|undefined, databaseId:strin
   }
 }
 
+/**
+ * Handles the error and outputs an appropriate message to the console.
+ *
+ * @param error - The error to handle.
+ */
 function handleError (error: unknown): void {
   if (error instanceof Error) {
-    console.error('An error occurred:', error.message)
+    console.error(`${chalk.red('Error: ')} ${error.message}`)
   } else {
-    console.error('An unknown error occurred:', error)
+    console.error(`${chalk.red('Error: ')} An unknown error occurred:`, error)
   }
+}
+
+/**
+ * Determines if the property has a title property.
+ *
+ * @param property - The property to check.
+ * @returns True if the property has a title property, otherwise false.
+ */
+function hasTitleProperty (property: any): property is { title: Array<{ text: { content: string } }> } {
+  return property.type === 'title' && Array.isArray(property.title)
 }
 
 async function getExistingPages (
@@ -65,13 +81,28 @@ async function getExistingPages (
       }
     ]
   })
-  // TODO: 上手く型定義できないのでanyにしている
   // DB上のタイトルを取得し配列に格納
   const existingPageTitles: PageTitle = {}
-  existingPages.results.forEach((page: any) => {
-    existingPageTitles[page.id] = page.properties.Title.title[0].text.content
-  })
-
+  for (const page of existingPages.results) {
+    if (isFullPage(page)) {
+      const titleProperty = page.properties.Title
+      if (hasTitleProperty(titleProperty)) {
+        if (titleProperty.title.length >= 1) {
+          // タイトルが存在する場合はIDとタイトルを格納
+          existingPageTitles[page.id] = titleProperty.title[0].text.content
+        } else {
+          // タイトルが存在しない場合は警告を出力し、アーカイブ処理を行う
+          const warningMessage = `Page with ID ${page.id} has an empty title. Archiving the page.`
+          console.warn(`${chalk.yellow('warning: ')} ${warningMessage}`)
+          try {
+            await archivePage(notion, page.id)
+          } catch (error) {
+            handleError(error)
+          }
+        }
+      }
+    }
+  }
   return existingPageTitles
 }
 
@@ -89,10 +120,10 @@ async function processMarkdownFile (
       const pageId = Object.keys(existingPageTitles).find(
         (key) => existingPageTitles[key] === md.fileName
       )
-      if (pageId) {
+      if (pageId !== undefined) {
         await archivePage(notion, pageId)
       } else {
-        throw new Error('page_id is not found')
+        handleError(new Error('page_id is not found'))
       }
     }
     await createPage(notion, databaseId, md, fileNameColumn, tagsColumn)
@@ -102,20 +133,20 @@ async function processMarkdownFile (
 }
 
 async function archivePage (notion: Client, pageId: string): Promise<void> {
-  const resDelete = await notion.pages.update({
+  await notion.pages.update({
     page_id: pageId,
     archived: true
   })
 }
 
-async function createPage (
+export async function createPage (
   notion: Client,
   databaseId: string,
   md: ReturnType<typeof readMD>[number],
   fileNameColumn: string = 'Title',
   tagsColumn: string = 'Tags'
 ): Promise<void> {
-  const resCreate = await notion.pages.create({
+  await notion.pages.create({
     parent: {
       type: 'database_id',
       database_id: databaseId

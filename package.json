@@ -1,6 +1,6 @@
 {
   "name": "markdown2notion",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "Convert markdown files to notion database. The folder structure is also fully represented as tags in notion.",
   "author": "Rujuu",
   "license": "MIT",
@@ -23,22 +23,32 @@
     "url": "https://github.com/Rujuu-prog/markdown2notion"
   },
   "scripts": {
-    "lint": "eslint --fix 'src/**/*.ts'",
-    "build": "yarn run tsc"
+    "lint": "eslint --fix '{src,__tests__}/**/*.ts'",
+    "build": "yarn run tsc",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.3",
     "@tryfabric/martian": "^1.2.4",
     "gray-matter": "^4.0.3",
     "typescript": "5.4.3"
+    "chalk": "4",
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.8.0",
     "dotenv": "^16.0.3",
     "eslint": "^8.0.1",
-    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-config-love": "^47.0.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^28.5.0",
     "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0"
+    "eslint-plugin-promise": "^6.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.5"
   }
 }
