@@ -10,4 +10,5 @@ const token = process.env.NOTION_TOKEN
 console.log(token)
 const databaseId = process.env.NOTION_DATABASE_ID
 console.log(databaseId)
-void markdownToNotion(token, databaseId, '../sample/docs', 'Title', 'Tags')
+const docsPath = path.resolve(__dirname, '../sample/docs');
+void markdownToNotion(token, databaseId, docsPath, 'Title', 'Tags')
