@@ -5,3 +5,5 @@ yarn-error.log
 sample/
 .env
 markdown2notion-*.tgz
+
+__tests__/

@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv'
 import path from 'path'
-import { markdownToNotion } from './markdownToNotion'
+import { markdownToNotion } from '../src'
 
 dotenv.config()
 const envPath = path.resolve(__dirname, '../.env')
