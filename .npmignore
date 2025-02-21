@@ -4,6 +4,7 @@ yarn-error.log
 .history/
 sample/
 .env
+.env.example
 markdown2notion-*.tgz
 
 __tests__/
