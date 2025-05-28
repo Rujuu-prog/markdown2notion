@@ -10,3 +10,5 @@ markdown2notion-*.tgz
 .idea/
 
 coverage/
+
+.DS_Store
