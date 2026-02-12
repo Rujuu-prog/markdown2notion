@@ -1,7 +1,9 @@
 name: Release
 
 permissions:
-  contents: write
+  contents: 
+    write
+    read
 
 on:
   release:
